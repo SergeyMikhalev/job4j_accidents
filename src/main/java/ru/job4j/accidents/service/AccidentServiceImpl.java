@@ -7,7 +7,7 @@ import ru.job4j.accidents.repository.AccidentRepository;
 import java.util.List;
 
 @Service
-public class AccidentServiceImpl implements AccidentService{
+public class AccidentServiceImpl implements AccidentService {
     private final AccidentRepository accidentRepository;
 
     public AccidentServiceImpl(AccidentRepository accidentRepository) {
