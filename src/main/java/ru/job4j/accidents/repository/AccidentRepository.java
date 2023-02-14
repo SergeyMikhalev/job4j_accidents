@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AccidentRepository {
     List<Accident> findAll();
+    boolean create(Accident accident);
 }

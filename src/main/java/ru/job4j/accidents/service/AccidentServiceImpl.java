@@ -18,4 +18,9 @@ public class AccidentServiceImpl implements AccidentService {
     public List<Accident> findAll() {
         return accidentRepository.findAll();
     }
+
+    @Override
+    public boolean create(Accident accident) {
+        return accidentRepository.create(accident);
+    }
 }

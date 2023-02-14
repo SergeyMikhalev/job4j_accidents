@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <div th:insert="~{inclusions :: bootstrap}"></div>
+    <title>Автомобильные инциденты</title>
+</head>
+<body>
+<div class="container">
+    <div th:insert="~{inclusions :: navbar}"></div>
+    <div class="row pt-3">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Новый инцидент
+            </div>
+            <div class="card-body">
+                <form th:action="@{/saveAccident}" method="POST"
+                      enctype="multipart/form-data" th:object ="${accident}">
+                    <input type="hidden" name="id" th:field ="*{id}"/>
+                    <div class="form-group">
+                        <label for="name">Имя заявителя</label>
+                        <input type="text" class="form-control" name="name" id="name" th:field ="*{name}">
+                    </div>
+                    <div class="form-group">
+                        <label for="text">Описание</label>
+                        <input type="text" class="form-control" name="text" id="text" th:field ="*{text}">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Адрес происшествия</label>
+                        <input type="text" class="form-control" name="address" id="address" th:field ="*{address}">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

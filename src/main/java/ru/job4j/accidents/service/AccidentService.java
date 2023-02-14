@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AccidentService {
     List<Accident> findAll();
+    boolean create(Accident accident);
 }
