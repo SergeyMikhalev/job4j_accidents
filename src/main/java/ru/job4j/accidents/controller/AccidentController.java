@@ -17,10 +17,10 @@ public class AccidentController {
     @GetMapping("/createAccident")
     public String viewCreateAccident(Model model) {
         model.addAttribute("user", "Petr Arsentev");
-        Accident accident = new Accident();
-        accident.setName("Введите имя заявителя");
-        accident.setText("Введите описание происшествия");
-        accident.setAddress("Введите адрес происшествия");
+        Accident accident = new Accident(0,
+                "Введите имя заявителя",
+                "Введите описание происшествия",
+                "Введите адрес происшествия");
         model.addAttribute("accident", accident);
         return "createAccident";
     }
