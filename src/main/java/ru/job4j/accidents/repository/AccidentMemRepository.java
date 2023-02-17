@@ -4,10 +4,7 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -22,14 +19,16 @@ public class AccidentMemRepository implements AccidentRepository {
                         "Иванов Иван",
                         "На Ростовской столкнулись 2 легковых автомобиля.",
                         "Ростовская 29",
-                        new AccidentType(1, "Две машины"))
+                        new AccidentType(1, "Две машины"),
+                        new HashSet<>())
         );
         data.put(2,
                 new Accident(2,
                         "Петров Петр",
                         "Наезд на велосипедиста. Водитель БМВ скрылся.",
                         "Героев Сибиряков 101",
-                        new AccidentType(3, "Машина и велосипед"))
+                        new AccidentType(3, "Машина и велосипед"),
+                        new HashSet<>())
         );
 
         data.put(3,
@@ -37,7 +36,8 @@ public class AccidentMemRepository implements AccidentRepository {
                         "Збигнев Бжезинский",
                         "Сбит человек, лежит без сознания на дороге.",
                         "Газовая 22",
-                        new AccidentType(2, "Машина и человек"))
+                        new AccidentType(2, "Машина и человек"),
+                        new HashSet<>())
         );
     }
 

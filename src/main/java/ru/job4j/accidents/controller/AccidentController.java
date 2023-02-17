@@ -11,7 +11,10 @@ import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.service.AccidentService;
 import ru.job4j.accidents.service.AccidentTypeService;
+import ru.job4j.accidents.service.RuleService;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -19,6 +22,7 @@ import java.util.Optional;
 public class AccidentController {
     private final AccidentService accidentService;
     private final AccidentTypeService accidentTypeService;
+    private final RuleService ruleService;
 
     @GetMapping("/createAccident")
     public String viewCreateAccident(Model model) {
@@ -27,15 +31,19 @@ public class AccidentController {
                 "Введите имя заявителя",
                 "Введите описание происшествия",
                 "Введите адрес происшествия",
-                null);
+                null,
+                new HashSet<>());
         System.out.println(accidentTypeService.findAll());
         model.addAttribute("accidentTypes", accidentTypeService.findAll());
+        model.addAttribute("allRules", ruleService.findAll());
         model.addAttribute("accident", accident);
         return "createAccident";
     }
 
     @PostMapping("/saveAccident")
-    public String save(@ModelAttribute Accident accident) {
+    public String save(@ModelAttribute Accident accident,
+                       @RequestParam(value = "ruleIds", required = false, defaultValue = "") List<Integer> ruleIds) {
+        System.out.println(ruleIds);
         Optional<AccidentType> type = accidentTypeService.findById(accident.getType().getId());
         if (type.isEmpty()) {
             return "redirect:/index";
