@@ -2,6 +2,7 @@ package ru.job4j.accidents.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
+import ru.job4j.accidents.model.AccidentType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,19 +21,23 @@ public class AccidentMemRepository implements AccidentRepository {
                 new Accident(1,
                         "Иванов Иван",
                         "На Ростовской столкнулись 2 легковых автомобиля.",
-                        "Ростовская 29")
+                        "Ростовская 29",
+                        new AccidentType(1, "Две машины"))
         );
         data.put(2,
                 new Accident(2,
                         "Петров Петр",
                         "Наезд на велосипедиста. Водитель БМВ скрылся.",
-                        "Героев Сибиряков 101")
+                        "Героев Сибиряков 101",
+                        new AccidentType(3, "Машина и велосипед"))
         );
+
         data.put(3,
                 new Accident(3,
                         "Збигнев Бжезинский",
                         "Сбит человек, лежит без сознания на дороге.",
-                        "Газовая 22")
+                        "Газовая 22",
+                        new AccidentType(2, "Машина и человек"))
         );
     }
 

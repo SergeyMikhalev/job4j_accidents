@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accidents.model.Accident;
+import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.service.AccidentService;
+import ru.job4j.accidents.service.AccidentTypeService;
 
 import java.util.Optional;
 
@@ -16,6 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AccidentController {
     private final AccidentService accidentService;
+    private final AccidentTypeService accidentTypeService;
 
     @GetMapping("/createAccident")
     public String viewCreateAccident(Model model) {
@@ -23,13 +26,21 @@ public class AccidentController {
         Accident accident = new Accident(0,
                 "Введите имя заявителя",
                 "Введите описание происшествия",
-                "Введите адрес происшествия");
+                "Введите адрес происшествия",
+                null);
+        System.out.println(accidentTypeService.findAll());
+        model.addAttribute("accidentTypes", accidentTypeService.findAll());
         model.addAttribute("accident", accident);
         return "createAccident";
     }
 
     @PostMapping("/saveAccident")
     public String save(@ModelAttribute Accident accident) {
+        Optional<AccidentType> type = accidentTypeService.findById(accident.getType().getId());
+        if (type.isEmpty()) {
+            return "redirect:/index";
+        }
+        accident.setType(type.get());
         accidentService.create(accident);
         return "redirect:/index";
     }
@@ -47,6 +58,11 @@ public class AccidentController {
 
     @PostMapping("/updateAccident")
     public String update(@ModelAttribute Accident accident) {
+        Optional<AccidentType> type = accidentTypeService.findById(accident.getType().getId());
+        if (type.isEmpty()) {
+            return "redirect:/index";
+        }
+        accident.setType(type.get());
         accidentService.update(accident);
         return "redirect:/index";
     }
