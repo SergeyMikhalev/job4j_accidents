@@ -33,7 +33,6 @@ public class AccidentController {
                 "Введите адрес происшествия",
                 null,
                 new HashSet<>());
-        System.out.println(accidentTypeService.findAll());
         model.addAttribute("accidentTypes", accidentTypeService.findAll());
         model.addAttribute("allRules", ruleService.findAll());
         model.addAttribute("accident", accident);
@@ -43,10 +42,9 @@ public class AccidentController {
     @PostMapping("/saveAccident")
     public String save(@ModelAttribute Accident accident,
                        @RequestParam(value = "ruleIds", required = false, defaultValue = "") List<Integer> ruleIds) {
-        System.out.println(ruleIds);
         Optional<AccidentType> type = accidentTypeService.findById(accident.getType().getId());
         if (type.isEmpty()) {
-            return "redirect:/index";
+            return "error";
         }
         accident.setType(type.get());
         accidentService.create(accident);
@@ -58,7 +56,7 @@ public class AccidentController {
         model.addAttribute("user", "Petr Arsentev");
         Optional<Accident> accident = accidentService.findById(id);
         if (accident.isEmpty()) {
-            return "redirect:/index";
+            return "error";
         }
         model.addAttribute("accident", accident.get());
         return "updateAccident";
@@ -68,7 +66,7 @@ public class AccidentController {
     public String update(@ModelAttribute Accident accident) {
         Optional<AccidentType> type = accidentTypeService.findById(accident.getType().getId());
         if (type.isEmpty()) {
-            return "redirect:/index";
+            return "error";
         }
         accident.setType(type.get());
         accidentService.update(accident);
