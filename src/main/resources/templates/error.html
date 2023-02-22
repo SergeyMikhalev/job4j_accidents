@@ -15,7 +15,8 @@
     <div th:insert="~{inclusions :: navbar}"></div>
     <div class="card">
         <div class="card-body">
-          <p>Произошла ошибка в работе приложения!</p>
+            <p> В ходе работы приложения произошла ошибка. </p>
+            <label th:text="${errorMsg}"></label>
         </div>
     </div>
 </div>

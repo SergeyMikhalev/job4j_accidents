@@ -3,10 +3,7 @@ package ru.job4j.accidents.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Rule;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
@@ -28,5 +25,18 @@ public class RuleMemRepository implements RuleRepository {
     @Override
     public Optional<Rule> findById(int id) {
         return Optional.ofNullable(data.get(id));
+    }
+
+    @Override
+    public Set<Rule> findById(List<Integer> ids) {
+        Rule element;
+        Set<Rule> result = new HashSet<>();
+        for (int id : ids) {
+            element = data.get(id);
+            if (element != null) {
+                result.add(element);
+            }
+        }
+        return result;
     }
 }

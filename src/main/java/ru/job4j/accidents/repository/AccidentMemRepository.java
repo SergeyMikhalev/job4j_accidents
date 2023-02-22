@@ -60,7 +60,13 @@ public class AccidentMemRepository implements AccidentRepository {
     }
 
     @Override
-    public boolean update(Accident accident) {
-        return data.replace(accident.getId(), accident) != null;
+    public boolean updateText(Accident accident) {
+        Accident accidentFromDb = data.get(accident.getId());
+        boolean result = accidentFromDb != null;
+        if (result) {
+            accidentFromDb.setText(accident.getText());
+            data.replace(accident.getId(), accidentFromDb);
+        }
+        return result;
     }
 }

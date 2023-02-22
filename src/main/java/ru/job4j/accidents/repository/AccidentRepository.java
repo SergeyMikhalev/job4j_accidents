@@ -9,5 +9,5 @@ public interface AccidentRepository {
     List<Accident> findAll();
     boolean create(Accident accident);
     Optional<Accident> findById(int id);
-    boolean update(Accident accident);
+    boolean updateText(Accident accident);
 }
