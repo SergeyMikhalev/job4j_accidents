@@ -2,6 +2,7 @@ package ru.job4j.accidents.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
@@ -22,7 +23,9 @@ public class AccidentServiceImpl implements AccidentService {
     private final RuleRepository ruleRepository;
     private final Logger logger = LoggerFactory.getLogger(AccidentServiceImpl.class);
 
-    public AccidentServiceImpl(AccidentRepository accidentRepository, AccidentTypeRepository accidentTypeRepository, RuleRepository ruleRepository) {
+    public AccidentServiceImpl(AccidentRepository accidentRepository,
+                               AccidentTypeRepository accidentTypeRepository,
+                               RuleRepository ruleRepository) {
         this.accidentRepository = accidentRepository;
         this.accidentTypeRepository = accidentTypeRepository;
         this.ruleRepository = ruleRepository;

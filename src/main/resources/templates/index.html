@@ -33,7 +33,7 @@
                         <a th:href="@{|/updateAccident?id=${accident.id}|}">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <span th:text="${accident.text}"></span>
+                        <span th:text="${accident.description}"></span>
                     </td>
                     <td th:text="${accident.address}"/>
                     <td th:text="${accident.type.name}"/>

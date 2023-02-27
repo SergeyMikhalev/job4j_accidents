@@ -1,8 +1,9 @@
-package ru.job4j.accidents.repository;
+package ru.job4j.accidents.repository.mem;
 
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
+import ru.job4j.accidents.repository.AccidentRepository;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -64,7 +65,7 @@ public class AccidentMemRepository implements AccidentRepository {
         Accident accidentFromDb = data.get(accident.getId());
         boolean result = accidentFromDb != null;
         if (result) {
-            accidentFromDb.setText(accident.getText());
+            accidentFromDb.setDescription(accident.getDescription());
             data.replace(accident.getId(), accidentFromDb);
         }
         return result;
