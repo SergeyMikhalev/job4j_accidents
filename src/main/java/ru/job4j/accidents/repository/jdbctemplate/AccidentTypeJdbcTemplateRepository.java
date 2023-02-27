@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Primary
 public class AccidentTypeJdbcTemplateRepository implements AccidentTypeRepository {
     public static final String SELECT_ALL = "select id, name from types";
     public static final String SELECT_BY_ID = "select id, name from types where id = ?";

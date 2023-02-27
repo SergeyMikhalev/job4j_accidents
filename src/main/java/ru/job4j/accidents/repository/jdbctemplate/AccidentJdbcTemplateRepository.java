@@ -16,7 +16,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
-@Primary
+
 @Repository
 public class AccidentJdbcTemplateRepository implements AccidentRepository {
     public static final String ALL_ACCIDENTS =

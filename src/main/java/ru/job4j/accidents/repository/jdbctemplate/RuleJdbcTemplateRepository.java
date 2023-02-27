@@ -9,7 +9,6 @@ import ru.job4j.accidents.repository.RuleRepository;
 import java.util.*;
 
 @Repository
-@Primary
 public class RuleJdbcTemplateRepository implements RuleRepository {
     public static final String SELECT_ALL = "select id, name from rules";
     public static final String SELECT_BY_ID = "select id, name from rules where id = ?";
