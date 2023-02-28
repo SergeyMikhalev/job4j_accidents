@@ -17,7 +17,7 @@ import java.util.Optional;
 @Repository
 @AllArgsConstructor
 public class AccidentHibernateRepository implements AccidentRepository {
-    public static final String ALL_ACCIDENTS = "from Accident";
+    public static final String ALL_ACCIDENTS = "from Accident a JOIN FETCH a.type";
     public static final String ACCIDENT_BY_ID = "from Accident a where a.id = :fId";
     public static final String UPDATE_DESC = "update Accident a set a.description=:fDesc where a.id = :fId";
     private final SessionFactory sf;
