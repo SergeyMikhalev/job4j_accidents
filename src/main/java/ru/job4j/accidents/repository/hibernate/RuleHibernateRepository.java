@@ -3,14 +3,12 @@ package ru.job4j.accidents.repository.hibernate;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.Rule;
 import ru.job4j.accidents.repository.RuleRepository;
 
 import java.util.*;
 
-@Primary
 @Repository
 @AllArgsConstructor
 public class RuleHibernateRepository implements RuleRepository {

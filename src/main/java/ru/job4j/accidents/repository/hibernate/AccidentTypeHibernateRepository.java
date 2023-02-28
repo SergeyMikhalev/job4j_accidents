@@ -3,7 +3,6 @@ package ru.job4j.accidents.repository.hibernate;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.repository.AccidentTypeRepository;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Primary
+
 @Repository
 @AllArgsConstructor
 public class AccidentTypeHibernateRepository implements AccidentTypeRepository {
