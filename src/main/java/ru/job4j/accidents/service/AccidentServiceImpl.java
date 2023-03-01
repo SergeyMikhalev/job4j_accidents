@@ -2,30 +2,26 @@ package ru.job4j.accidents.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.model.Rule;
-import ru.job4j.accidents.repository.AccidentRepository;
-import ru.job4j.accidents.repository.AccidentTypeRepository;
-import ru.job4j.accidents.repository.RuleRepository;
+import ru.job4j.accidents.repository.data.AccidentDataRepository;
+import ru.job4j.accidents.repository.data.AccidentTypeDataRepository;
+import ru.job4j.accidents.repository.data.RuleDataRepository;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class AccidentServiceImpl implements AccidentService {
-    private final AccidentRepository accidentRepository;
-    private final AccidentTypeRepository accidentTypeRepository;
-    private final RuleRepository ruleRepository;
+    private final AccidentDataRepository accidentRepository;
+    private final AccidentTypeDataRepository accidentTypeRepository;
+    private final RuleDataRepository ruleRepository;
     private final Logger logger = LoggerFactory.getLogger(AccidentServiceImpl.class);
 
-    public AccidentServiceImpl(AccidentRepository accidentRepository,
-                               AccidentTypeRepository accidentTypeRepository,
-                               RuleRepository ruleRepository) {
+    public AccidentServiceImpl(AccidentDataRepository accidentRepository,
+                               AccidentTypeDataRepository accidentTypeRepository,
+                               RuleDataRepository ruleRepository) {
         this.accidentRepository = accidentRepository;
         this.accidentTypeRepository = accidentTypeRepository;
         this.ruleRepository = ruleRepository;
@@ -57,8 +53,12 @@ public class AccidentServiceImpl implements AccidentService {
 
     @Override
     public void updateText(Accident accident) {
-        boolean result = accidentRepository.updateText(accident);
-        if (!result) {
+        Optional<Accident> accidentFromDB = accidentRepository.findById(accident.getId());
+        if (accidentFromDB.isPresent()) {
+            accidentFromDB.get().setDescription(accident.getDescription());
+            accidentRepository.save(accidentFromDB.get());
+        }
+        if (accidentFromDB.isEmpty()) {
             String errorMsg = " Нет возможности обновить авто инцидент. Id"
                     + " в переданном объекте и в БД. в объекте -> "
                     + accident.getId() + " нет в БД.";
@@ -68,7 +68,8 @@ public class AccidentServiceImpl implements AccidentService {
     }
 
     private boolean create(Accident accident) {
-        return accidentRepository.create(accident);
+        accidentRepository.save(accident);
+        return true;
     }
 
     private AccidentType checkAccidentType(Accident accident) {
@@ -85,7 +86,7 @@ public class AccidentServiceImpl implements AccidentService {
     }
 
     private Set<Rule> checkAccidentRules(List<Integer> ids) {
-        Set<Rule> result = ruleRepository.findById(ids);
+        Set<Rule> result = new HashSet<>(ruleRepository.findAllById(ids));
         if (result.size() != ids.size()) {
             String errorMsg = " Нет возможности сохранить авто инцидент."
                     + " Несовпадение набора связанных статей"

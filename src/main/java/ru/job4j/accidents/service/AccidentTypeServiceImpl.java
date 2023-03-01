@@ -1,18 +1,18 @@
 package ru.job4j.accidents.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import ru.job4j.accidents.model.AccidentType;
-import ru.job4j.accidents.repository.AccidentTypeRepository;
+import ru.job4j.accidents.repository.data.AccidentTypeDataRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AccidentTypeServiceImpl implements AccidentTypeService {
-    private final AccidentTypeRepository repository;
+    private final AccidentTypeDataRepository repository;
 
-    public AccidentTypeServiceImpl(AccidentTypeRepository repository) {
+    public AccidentTypeServiceImpl(AccidentTypeDataRepository repository) {
         this.repository = repository;
     }
 
