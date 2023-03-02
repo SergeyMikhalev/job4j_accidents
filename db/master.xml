@@ -12,4 +12,7 @@
     <include file="scripts/005_ddl_create_table_accidents.sql" relativeToChangelogFile="true"/>
     <include file="scripts/006_ddl_create_tables_rules_for_accidents.sql" relativeToChangelogFile="true"/>
     <include file="scripts/007_dml_insert_into_accidents.sql" relativeToChangelogFile="true"/>
- </databaseChangeLog>
+    <include file="scripts/008_ddl_create_table_users.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/009_ddl_create_table_authorities.sql" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

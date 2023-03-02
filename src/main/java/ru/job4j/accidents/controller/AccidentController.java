@@ -1,6 +1,7 @@
 package ru.job4j.accidents.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,8 @@ public class AccidentController {
 
     @GetMapping("/createAccident")
     public String viewCreateAccident(Model model) {
-        model.addAttribute("user", "Petr Arsentev");
+        model.addAttribute("user",
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Accident accident = new Accident(0,
                 "Введите имя заявителя",
                 "Введите описание происшествия",
@@ -44,7 +46,8 @@ public class AccidentController {
 
     @GetMapping("/updateAccident")
     public String viewUpdateAccident(@RequestParam("id") int id, Model model) {
-        model.addAttribute("user", "Petr Arsentev");
+        model.addAttribute("user",
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Accident accident = accidentService.findById(id);
         model.addAttribute("accident", accident);
         return "updateAccident";
