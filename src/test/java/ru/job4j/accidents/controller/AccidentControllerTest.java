@@ -16,16 +16,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
 @Transactional
-class IndexControllerTest {
+class AccidentControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     @WithMockUser
-    public void whenGetIndexDefault() throws Exception {
-        this.mockMvc.perform(get("/index"))
+    public void whenCreateAccident() throws Exception {
+        this.mockMvc.perform(get("/createAccident"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"));
+                .andExpect(view().name("createAccident"));
     }
 
+    @Test
+    @WithMockUser
+    public void whenUpdateAccidentButNoAccident() throws Exception {
+        this.mockMvc.perform(get("/updateAccident?id=999"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("error"));
+    }
+
+    @Test
+    @WithMockUser
+    public void whenUpdateAccident() throws Exception {
+        this.mockMvc.perform(get("/updateAccident?id=1"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("updateAccident"));
+
+    }
 }
