@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.accidents.Main;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.service.AccidentService;
@@ -33,7 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
-@Transactional
 class AccidentControllerTest {
     @Autowired
     private MockMvc mockMvc;
