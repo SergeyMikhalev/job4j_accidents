@@ -29,10 +29,6 @@ public class AccidentServiceImpl implements AccidentService {
 
     @Override
     public List<Accident> findAll() {
-        //List<Accident> list = accidentRepository.findAll();
-        //return list.stream().map((Accident a) -> {
-        //    return new AccidentShortDto(a.getId(), a.getName(), a.getDescription(), a.getAddress(), a.getType());
-        //}).collect(Collectors.toList());
         return accidentRepository.findAll();
     }
 
