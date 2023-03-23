@@ -31,4 +31,14 @@ public class Accident {
             joinColumns = {@JoinColumn(name = "accident_id")},
             inverseJoinColumns = {@JoinColumn(name = "rule_id")})
     private Set<Rule> rules = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Accident{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", description='" + description + '\''
+                + ", address='" + address + '\''
+                + '}';
+    }
 }

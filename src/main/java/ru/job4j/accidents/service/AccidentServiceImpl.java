@@ -3,7 +3,6 @@ package ru.job4j.accidents.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import ru.job4j.accidents.dto.AccidentShortDto;
 import ru.job4j.accidents.model.Accident;
 import ru.job4j.accidents.model.AccidentType;
 import ru.job4j.accidents.model.Rule;
@@ -12,7 +11,6 @@ import ru.job4j.accidents.repository.data.AccidentTypeDataRepository;
 import ru.job4j.accidents.repository.data.RuleDataRepository;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class AccidentServiceImpl implements AccidentService {
@@ -30,11 +28,12 @@ public class AccidentServiceImpl implements AccidentService {
     }
 
     @Override
-    public List<AccidentShortDto> findAll() {
-        List<Accident> list = accidentRepository.findAll();
-        return list.stream().map((Accident a) -> {
-            return new AccidentShortDto(a.getId(), a.getName(), a.getDescription(), a.getAddress(), a.getType());
-        }).collect(Collectors.toList());
+    public List<Accident> findAll() {
+        //List<Accident> list = accidentRepository.findAll();
+        //return list.stream().map((Accident a) -> {
+        //    return new AccidentShortDto(a.getId(), a.getName(), a.getDescription(), a.getAddress(), a.getType());
+        //}).collect(Collectors.toList());
+        return accidentRepository.findAll();
     }
 
     @Override
