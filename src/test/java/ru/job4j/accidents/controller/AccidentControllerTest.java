@@ -109,4 +109,5 @@ class AccidentControllerTest {
         assertThat(accident.getValue().getDescription(), is("Совершенно новое описание"));
         assertThat(accident.getValue().getId(), is(114));
     }
+
 }
