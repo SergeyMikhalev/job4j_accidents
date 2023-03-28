@@ -12,5 +12,14 @@
 - Java 17
 - Maven 3.6
 
+### Запуск
+Возможен запуск при помощи docker + docker-compose. Фалы Dockerfile и docker-compose.yml.
+для запуска из командной строки
+
+- docker build -t shortcut .
+- docker-compose up
+
+находясь в корневой папке проекта
+
 ### Контакты
 tg: @stariy_pen
