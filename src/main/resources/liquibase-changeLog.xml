@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <include file="db/001_ddl_create_table_rules.sql" relativeToChangelogFile="true"/>
+    <include file="db/002_dml_insert_into_rules.sql" relativeToChangelogFile="true"/>
+    <include file="db/003_ddl_create_table_types.sql" relativeToChangelogFile="true"/>
+    <include file="db/004_dml_insert_into_types.sql" relativeToChangelogFile="true"/>
+    <include file="db/005_ddl_create_table_accidents.sql" relativeToChangelogFile="true"/>
+    <include file="db/006_ddl_create_tables_rules_for_accidents.sql" relativeToChangelogFile="true"/>
+    <include file="db/007_dml_insert_into_accidents.sql" relativeToChangelogFile="true"/>
+    <include file="db/008_ddl_create_table_authorities.sql" relativeToChangelogFile="true"/>
+    <include file="db/009_ddl_create_table_users.sql" relativeToChangelogFile="true"/>
+    <include file="db/010_dml_insert_into_authorities.sql" relativeToChangelogFile="true"/>
+    <include file="db/011_dml_insert_admin_into_users.sql" relativeToChangelogFile="true"/>
+</databaseChangeLog>
