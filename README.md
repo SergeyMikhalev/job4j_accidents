@@ -16,8 +16,8 @@
 Возможен запуск при помощи docker + docker-compose. Фалы Dockerfile и docker-compose.yml.
 для запуска из командной строки
 
-- docker build -t shortcut .
-- docker-compose up
+- docker-compose build
+- docker-compose up -d
 
 находясь в корневой папке проекта
 
